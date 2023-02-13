@@ -13,6 +13,6 @@ namespace DataBase.Tables
         public string Active { get; set; } = string.Empty;
 
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
+        public Brand Brand { get; set; } = new();
     }
 }
