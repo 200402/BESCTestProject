@@ -1,7 +1,7 @@
-﻿using FillingDB.JSONtypes;
+﻿using Car.Models.FillingDB.JSONtypes;
 using Newtonsoft.Json;
 
-namespace FillingDB
+namespace Car.Models.FillingDB
 {
     static public class Reader
     {

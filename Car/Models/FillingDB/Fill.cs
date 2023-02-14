@@ -1,9 +1,8 @@
 ﻿using DataBase.Tables;
-using FillingDB.JSONtypes;
-using FillingDB;
 using DataBase.Interfaces;
+using Car.Models.FillingDB.JSONtypes;
 
-namespace Car.FillingDB
+namespace Car.Models.FillingDB
 {
     static public class Fill
     {

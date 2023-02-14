@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FillingDB.JSONtypes
+namespace Car.Models.FillingDB.JSONtypes
 {
     public class Root
     {

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FillingDB.JSONtypes
+namespace Car.Models.FillingDB.JSONtypes
 {
-    public class ModelJSON 
+    public class ModelJSON
     {
 
         public string Id { get; set; } = string.Empty;
