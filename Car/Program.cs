@@ -1,6 +1,8 @@
 using DataBase;
 using DataBase.Interfaces;
 using DataBase.Repository;
+using DataBase.Tables;
+using FillingDB;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -19,6 +21,7 @@ if (app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    db.Database.EnsureDeleted();
     db.Database.EnsureCreated();
 }
 

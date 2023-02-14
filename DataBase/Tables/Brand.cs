@@ -8,11 +8,25 @@ namespace DataBase.Tables
 {
     public class Brand
     {
-        public int? Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Active { get; set; } = string.Empty; // И зачем это здесь?
+        public int Active { 
+            get 
+            {
+                var a = 0;
+                foreach (var b in Brands) 
+                {
+                    a += b.Active;
+                } return a;
+            }
+            set { }
+        }
 
         public ICollection<Model> Brands { get;set; }
-        public Brand() { Brands = new List<Model>(); }
+
+        public Brand() 
+        { 
+            Brands = new List<Model>();
+        }
     }
 }

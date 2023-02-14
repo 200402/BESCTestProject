@@ -1,5 +1,6 @@
 ﻿using DataBase.Interfaces;
 using DataBase.Tables;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace DataBase.Repository
     public class BrandRepository : IBrand
     {
         private readonly ApplicationContext context;
-        private readonly IMemoryCache _memoryCache;
 
 
         public BrandRepository(ApplicationContext context)
@@ -21,5 +21,9 @@ namespace DataBase.Repository
         }
 
         public IEnumerable<Brand> AllBrands => context.Brands.ToList();
+
+        public void InsertBrandl(Brand brand) => context.Brands.Add(brand);
+
+        public void Save() => context.SaveChanges();
     }
 }

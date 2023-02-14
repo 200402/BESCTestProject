@@ -10,5 +10,7 @@ namespace DataBase.Interfaces
     public interface IBrand
     {
         IEnumerable<Brand> AllBrands { get; }
+        void InsertBrandl(Brand brand);
+        void Save();
     }
 }

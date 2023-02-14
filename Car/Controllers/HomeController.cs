@@ -1,4 +1,8 @@
-﻿using Car.Models;
+﻿using Car.FillingDB;
+using Car.Models;
+using DataBase.Interfaces;
+using FillingDB;
+using FillingDB.JSONtypes;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +11,12 @@ namespace Car.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBrand brand;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBrand brand)
         {
-            _logger = logger;
+            this._logger = logger;
+            this.brand = brand;
         }
 
         public IActionResult Index()
@@ -22,6 +28,13 @@ namespace Car.Controllers
         {
             return View();
         }
+
+        public IActionResult FillDB()
+        {
+            Fill.Filling(brand);
+            return RedirectPermanent("~/Home/Index");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
