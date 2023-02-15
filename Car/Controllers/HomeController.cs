@@ -1,8 +1,6 @@
 ﻿using Car.Models;
 using Car.Models.FillingDB;
 using DataBase.Interfaces;
-using Car.Models.FillingDB;
-using Car.Models.FillingDB.JSONtypes;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,15 +10,30 @@ namespace Car.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IBrand brand;
+        private readonly IModel model;
 
-        public HomeController(ILogger<HomeController> logger, IBrand brand)
+        public HomeController(ILogger<HomeController> logger, IBrand brand, IModel model)
         {
             this._logger = logger;
             this.brand = brand;
+            this.model = model;
         }
 
-        public IActionResult Index()
+        public IActionResult AllModel()
         {
+            ViewBag.cars = model.AllModels;
+            return View();
+        }
+
+        public IActionResult AllBrand()
+        {
+            ViewBag.brands = brand.AllBrands;
+            return View();
+        }
+
+        public IActionResult AllBrandAndModel()
+        {
+            ViewBag.brands = brand.AllBrands;
             return View();
         }
 
@@ -32,8 +45,14 @@ namespace Car.Controllers
         public IActionResult FillDB()
         {
             Fill.Filling(brand);
-            return RedirectPermanent("~/Home/Index");
+            return RedirectPermanent("~/Home/AllModel");
         }
+
+        protected void CheckedChanged(object sender, EventArgs e)
+        {
+            Privacy();
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

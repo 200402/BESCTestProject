@@ -1,0 +1,49 @@
+﻿@{
+    @using DataBase.Tables
+    @model IEnumerable<Model>
+    ViewData["Title"] = "Home Page";
+    Layout = "_myAside";
+}
+@{
+    foreach (var brand in ViewBag.brands)
+    {
+        if (brand.Active > 0)
+        {
+            <div>
+                <h1>Бренд: @brand.Name</h1>
+                <p>Количество: @brand.Active</p>
+                @foreach (var car in brand.Models)
+                {
+                    if (car.Active > 0)
+                    {
+                        <div>
+                            <h5>Модель: @car.Name</h5>
+                            <p>Количество: @car.Active</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="color:#ff0000">
+                            <h5>Модель: @car.Name</h5>
+                            <p>Количество: @car.Active</p>
+                        </div>
+                    }
+                } 
+            </div>
+        }
+        else
+        {
+            <div style="color:#ff0000">
+                <h1>Бренд: @brand.Name</h1>
+                <p>Количество: @brand.Active</p>
+                @foreach (var car in brand.Models)
+                {
+                    <div>
+                        <h3>Модель: @car.Name</h3>
+                        <p>Количество: @car.Active</p>
+                    </div>
+                }
+            </div>
+        }
+    }
+}

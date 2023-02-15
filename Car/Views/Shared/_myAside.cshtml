@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<div class="container b4" data-widget="container">
+    <div class="e0" data-widget="row">
+        <div class="col-7" style="max-width:200px; flex-basis: 200px; margin-right:20pt" data-widget="column">
+
+            <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllModel">Все марки авто</a>
+            <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllBrand">Все модели</a>
+            <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllBrandAndModel">Модели сгруппированные по маркам</a>
+        </div>
+        <div class="col-7" data-widget="column">
+
+      <asp:Button id="Button1"
+          Text="Submit"
+           OnClick="SubmitBtn_Click" 
+           runat="server"/>
+            @RenderBody()
+        </div>
+    </div> 
+
+
+
+</div>

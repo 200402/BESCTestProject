@@ -23,7 +23,7 @@ namespace Car.Models.FillingDB.JSONtypes
         {
             Id = Guid.NewGuid(),
             Name = root.Name,
-            Brands = ModelJSON.ToDBModels(root.Models)
+            Models = ModelJSON.ToDBModels(root.Models)
         };
     }
 }

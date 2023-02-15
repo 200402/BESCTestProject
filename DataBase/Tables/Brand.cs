@@ -10,23 +10,13 @@ namespace DataBase.Tables
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int Active { 
-            get 
-            {
-                var a = 0;
-                foreach (var b in Brands) 
-                {
-                    a += b.Active;
-                } return a;
-            }
-            set { }
-        }
+        public int Active { get; set; }
 
-        public ICollection<Model> Brands { get;set; }
+        public ICollection<Model> Models { get;set; }
 
         public Brand() 
         { 
-            Brands = new List<Model>();
+            Models = new List<Model>();
         }
     }
 }

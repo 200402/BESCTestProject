@@ -1,0 +1,25 @@
+﻿@{
+    @using DataBase.Tables
+    @model IEnumerable<Model>
+    ViewData["Title"] = "Home Page";
+    Layout = "_myAside";
+}
+@{
+    foreach (var car in ViewBag.cars)
+    {
+        if (car.Active > 0)
+        {
+            <div>
+                <h2>Модель: @car.Name</h2>
+                <p>Количество: @car.Active</p>
+            </div>
+        }
+        else
+        {
+            <div style="color:#ff0000">
+                <h2>Модель: @car.Name</h2>
+                <p>Количество: @car.Active</p>
+            </div>
+        }
+    }
+}

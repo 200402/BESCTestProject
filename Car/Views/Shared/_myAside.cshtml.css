@@ -1,0 +1,38 @@
+﻿.aaf0 {
+    flex-grow: 1;
+}
+.aaf0, .faa {
+    position: relative;
+}
+.b4 {
+    box-sizing: border-box;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin: 24px auto 0;
+    max-width: 1472px;
+    padding: 0 28px;
+    width: 100%;
+}
+.c7 {
+    align-items: stretch;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-bottom:24px;
+    margin-left: 24px;
+    min-width: 0;
+}
+.e0 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: calc(24px*-1);
+    margin-left: calc(24px*-1);
+    max-width: calc(100% + 24px);
+    width: calc(100% + 24px);
+}

@@ -6,15 +6,21 @@ namespace Car.Models.FillingDB
 {
     static public class Fill
     {
-        static public void Filling(IBrand brand)
+        static public void Filling(IBrand brandRepository)
         {
-            var qwert = Reader.JSONObj();
-            foreach (var item in qwert)
+            var brands = Reader.JSONObj();
+            foreach (var brandJSON in brands)
             {
-                var qwertyu = Root.ToDBModel(item);
-                brand.InsertBrandl(qwertyu);
+                var brand = Root.ToDBModel(brandJSON);
+                int i = 0;
+                foreach (var Model in brand.Models)
+                {
+                    i += Model.Active;
+                }
+                brand.Active = i;
+                brandRepository.InsertBrandl(brand);
             }
-            brand.Save();
+            brandRepository.Save();
         }
     }
 }
