@@ -7,8 +7,8 @@ namespace Car.Models.FillingDB
     {
         static public List<Root> JSONObj()
         {
-            var qwe = File.ReadAllText("Models\\FillingDB\\response.json");
-            return JsonConvert.DeserializeObject<List<Root>>(qwe);
+            var fullJson = File.ReadAllText("Models\\FillingDB\\response.json");
+            return JsonConvert.DeserializeObject<List<Root>>(fullJson);
         }
     }
 }

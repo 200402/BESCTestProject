@@ -8,17 +8,34 @@ namespace Car.Models.FillingDB
     {
         static public void Filling(IBrand brandRepository)
         {
-            var brands = Reader.JSONObj();
-            foreach (var brandJSON in brands)
+            if (brandRepository.AllBrands.Count() == 0)
             {
-                var brand = Root.ToDBModel(brandJSON);
-                int i = 0;
-                foreach (var Model in brand.Models)
+                var brandJSONs = Reader.JSONObj();
+                foreach (var brandJSON in brandJSONs)
                 {
-                    i += Model.Active;
+                    var brand = Root.ToDBModel(brandJSON);
+                    int i = 0;
+                    foreach (var model in brand.Models)
+                    {
+                        i += model.Active;
+                    }
+                    brand.Active = i;
+                    brandRepository.InsertBrandl(brand);
                 }
-                brand.Active = i;
-                brandRepository.InsertBrandl(brand);
+            }
+            else
+            {
+                Random random= new Random();
+                foreach (var brand in brandRepository.AllBrands)
+                {
+                    int i = 0;
+                    foreach (var model in brand.Models)
+                    {
+                        model.Active = random.Next(20);
+                        i += model.Active;
+                    }
+                    brand.Active = i;
+                }
             }
             brandRepository.Save();
         }

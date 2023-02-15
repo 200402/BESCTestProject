@@ -9,20 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationContext>(o=>o.UseSqlServer(ConnectionString.conStringServer)); // строка подключения временно в классе
+builder.Services.AddDbContext<ApplicationContext>(o=>o.UseSqlServer(ConnectionString.conString)); // строка подключения временно в классе
 
 builder.Services.AddTransient<IBrand, BrandRepository>();
 builder.Services.AddTransient<IModel, ModelRepository>();
 
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-    db.Database.EnsureDeleted();
     db.Database.EnsureCreated();
-//}
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

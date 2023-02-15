@@ -38,7 +38,9 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            <a asp-area="" asp-controller="Home" asp-action="FillDB">Заполнить БД</a>
+            <form method="post" action="~/Home/FillDB">
+                <input type="submit" value="Перезаписать БД"/>
+            </form>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

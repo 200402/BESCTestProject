@@ -33,6 +33,8 @@ namespace Car.Controllers
 
         public IActionResult AllBrandAndModel()
         {
+            var qwe = model.AllModels; //Понятия не имею почему, но без этого brand.AllBrands понятия не имеет какие модели у брендов 
+
             ViewBag.brands = brand.AllBrands;
             return View();
         }
@@ -45,6 +47,7 @@ namespace Car.Controllers
         public IActionResult FillDB()
         {
             Fill.Filling(brand);
+            ViewBag.brands = brand.AllBrands;
             return RedirectPermanent("~/Home/AllModel");
         }
 
