@@ -22,8 +22,21 @@ namespace DataBase.Repository
 
         public IEnumerable<Brand> AllBrands => context.Brands.ToList();
 
-        public void InsertBrandl(Brand brand) => context.Brands.Add(brand);
+        public void InsertBrand(Brand brand) => context.Brands.Add(brand);
 
         public void Save() => context.SaveChanges();
+
+        public void UpdateBrand(Brand brand)
+        {
+            var brandFromDB = context.Brands.Find(new object[] { brand.Id });
+            brandFromDB.Name = brand.Name;
+            // TODO: сделать связь с моделями
+        }
+
+        public void DeleteBrand(Brand brand)
+        {
+            var brandFromDB = context.Brands.Find(new object[] { brand.Id });
+            context.Brands.Remove(brandFromDB);
+        }
     }
 }

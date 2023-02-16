@@ -1,39 +1,93 @@
-﻿@{
+﻿
+@{
     @using DataBase.Tables
-    @model IEnumerable<Model>
+    @model Model
     ViewData["Title"] = "Home Page";
     Layout = "_myAside";
 }
+
+<!-- addOrEdit -->
+<div class="modal fade" id="addOrEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 id="H1Status" class="modal-title fs-5"> фыв</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+            <form id="saveForm" method="post" action="" >
+
+            <div class="modal-body">
+                <input id="IdInput" type="hidden" name="Id" value="" />
+              <div >
+                <label for="Name" class="contro-lavel">Название модели:     </label>
+                <input id="NameText" class="input-group" name="Name" type="text">
+              </div>
+                    <div>
+                        <label for="Active" class="contro-lavel">Кол-во экземпляров:</label>
+                        <input id="ActiveInput" class="input-group" name="Active" type="number" value=0>
+                    </div>
+                    <div>
+                        <label for="Brand" class="contro-lavel">Название бренда:</label>
+                        <select id="IdBrandSelect" name="BrandId" class="form-select">
+                            @foreach (var brand in ViewBag.brands)
+                            {
+                                <option value="@brand.Id">@brand.Name</option>
+                            }
+                        </select>
+
+                    </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button onclick="addModel(document.getElementById('saveForm'))" type="button" class="btn btn-primary">Ок</button>
+          </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addOrEdit" onclick="editModel('','',0,0,'Добавить запись')">
+    Добавить запись
+</button>
+<br />
+<br />
+
 <table>
 @{
     foreach (var car in ViewBag.cars)
-    {
-        if (car.Active > 0)
         {
             <tr>
+            @if (car.Active > 0)
+            {
                 <td>
                     <h2>Модель: @car.Name</h2>
-                    <p>Количество: @car.Active</p>
+                    Количество: @car.Active<br />
+                    Бренд: @car.Brand.Name
                 </td>
+            }
+            else
+            {
                 <td>
-                    <input height="40pt" type="image" src="~/image/edit.png"/>
-                </td>
-            </tr>
-        }
-        else
-        {
-            <tr>
-                <td>
-                    <div style="color:#ff0000">
-                        <h2>Модель: @car.Name</h2>
-                        <p>Количество: @car.Active</p>
+                    <div style="color:#AAAAAA">
+                            <h2>Модель: @car.Name</h2>
+                            Количество: @car.Active<br />
+                            Бренд: @car.Brand.Name
                     </div>
                 </td>
-                <td>
-                    <input height="40pt" type="image" src="~/image/edit.png"/>
-                </td>
+                }
+            <td>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addOrEdit" onclick="editModel('@car.Id','@car.Name',@car.Active,'@car.Brand.Id','Изменить запись')">
+                    Изменить
+                </button>
+            </td>
+            <td>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" onclick="deleteModel('@car.Id')">
+                    Удалить
+                </button>
+            </td>
             </tr>
-        }
     }
-    }
+}
 </table>
+<br/>

@@ -10,14 +10,9 @@
             <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllModel">Все модели</a>
             <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllBrand">Все бренды</a>
             <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllBrandAndModel">Модели сгруппированные брендам</a>
-            <a style="background:#E0E0E0" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FillDBsS">заполить бд</a>
         </div>
         <div class="col-7" data-widget="column">
 
-      <asp:Button id="Button1"
-          Text="Submit"
-           OnClick="SubmitBtn_Click" 
-           runat="server"/>
             @RenderBody()
         </div>
     </div> 

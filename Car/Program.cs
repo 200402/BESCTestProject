@@ -3,6 +3,7 @@ using DataBase.Interfaces;
 using DataBase.Repository;
 using DataBase.Tables;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,4 +42,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=AllModel}/{id?}");
+
 app.Run();

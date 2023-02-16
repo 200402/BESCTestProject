@@ -20,7 +20,7 @@ namespace Car.Models.FillingDB
                         i += model.Active;
                     }
                     brand.Active = i;
-                    brandRepository.InsertBrandl(brand);
+                    brandRepository.InsertBrand(brand);
                 }
             }
             else

@@ -1,7 +1,11 @@
 ﻿using Car.Models;
 using Car.Models.FillingDB;
+using Car.Models.FillingDB.JSONtypes;
 using DataBase.Interfaces;
+using DataBase.Tables;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Diagnostics;
 
 namespace Car.Controllers
@@ -17,10 +21,12 @@ namespace Car.Controllers
             this._logger = logger;
             this.brand = brand;
             this.model = model;
+            var qwe = model.AllModels; //Понятия не имею почему, но без этого brand.AllBrands понятия не имеет какие модели у брендов 
         }
 
         public IActionResult AllModel()
         {
+            ViewBag.brands = brand.AllBrands;
             ViewBag.cars = model.AllModels;
             return View();
         }
@@ -33,7 +39,6 @@ namespace Car.Controllers
 
         public IActionResult AllBrandAndModel()
         {
-            var qwe = model.AllModels; //Понятия не имею почему, но без этого brand.AllBrands понятия не имеет какие модели у брендов 
 
             ViewBag.brands = brand.AllBrands;
             return View();
@@ -56,7 +61,55 @@ namespace Car.Controllers
             Privacy();
         }
 
+        [HttpGet]
+        public IEnumerable<Brand> GetDetails()
+        {
+            return brand.AllBrands;
+        }
 
+        [HttpPost]
+        public void CreateModel(Model newModel)
+        {
+            if(newModel.Id == Guid.Empty)
+            {
+                model.InsertModel(newModel);
+                model.Save();
+            }
+            else
+            {
+                model.UpdateModel(newModel);
+                model.Save();
+            }
+        }
+
+        [HttpPost]
+        public void DeleteModel(Model delModel)
+        {
+            model.DeleteModel(delModel);
+            model.Save();
+        }
+
+        [HttpPost]
+        public void CreateBrand(Brand newBrand)
+        {
+            if(newBrand.Id == Guid.Empty)
+            {
+                brand.InsertBrand(newBrand);
+                brand.Save();
+            }
+            else
+            {
+                brand.UpdateBrand(newBrand);
+                brand.Save();
+            }
+        }
+
+        [HttpPost]
+        public void DeleteBrand(Brand delBrand)
+        {
+            brand.DeleteBrand(delBrand);
+            brand.Save();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

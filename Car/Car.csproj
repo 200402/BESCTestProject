@@ -30,4 +30,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="E:\Visual studio\BESCTestProject\Car\Models\.editorconfig" />
+  </ItemGroup>
+
 </Project>
