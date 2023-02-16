@@ -19,9 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Models\FillingDB\response.json">
+    <Resource Include="wwwroot\response.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\image\edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
