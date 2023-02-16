@@ -4,22 +4,36 @@
     ViewData["Title"] = "Home Page";
     Layout = "_myAside";
 }
+<table>
 @{
     foreach (var brand in ViewBag.brands)
     {
         if (brand.Active > 0)
         {
-            <div>
-                <h2>Бренд: @brand.Name</h2>
-                <p>Количество: @brand.Active</p>
-            </div>
+            <tr>
+                <td>
+                    <h2>Бренд: @brand.Name</h2>
+                    <p>Количество: @brand.Active</p>
+                </td>
+                <td>
+                    <input height="40pt" type="image" src="~/image/edit.png"/>
+                </td>
+            </tr>
         }
         else
         {
-            <div style="color:#ff0000">
-                <h2>Бренд: @brand.Name</h2>
-                <p>Количество: @brand.Active</p>
-            </div>
+            <tr>
+                <td>
+                    <div style="color:#ff0000">
+                        <h2>Бренд: @brand.Name</h2>
+                        <p>Количество: @brand.Active</p>
+                    </div>
+                </td>
+                <td>
+                    <input height="40pt" type="image" src="~/image/edit.png" />
+                </td>
+            </tr>
         }
     }
 }
+</table>
