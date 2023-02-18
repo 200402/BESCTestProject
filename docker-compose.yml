@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  car:
+    image: ${DOCKER_REGISTRY-}car
+    build:
+      context: .
+      dockerfile: Car/Dockerfile
+  db_auth: 
+    container_name: db_auth
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=ROOT
+      - POSTGRES_USER=ADMIN
+    image: postgres:alpine3.17
