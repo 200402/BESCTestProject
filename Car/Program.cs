@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationContext>(o => o.UseNpgsql(ConnectionString.conStringNpgsql)); // строка подключения временно в классе
+builder.Services.AddDbContext<ApplicationContext>(o=>o.UseSqlServer(ConnectionString.conString)); // строка подключения временно в классе
 
 builder.Services.AddTransient<IBrand, BrandRepository>();
 builder.Services.AddTransient<IModel, ModelRepository>();
